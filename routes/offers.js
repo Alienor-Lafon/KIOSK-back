@@ -51,7 +51,7 @@ router.put("/:offerId/", async function (req, res, next) {
     res.json({ result: false });
   } else {
     var offer = await OfferModel.findById(req.params.offerId);
-    console.log(offer);
+// console.log(offer);
     if (req.body.image) {
       offer.offerImage = req.body.image;
     }

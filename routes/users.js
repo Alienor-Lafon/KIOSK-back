@@ -27,8 +27,8 @@ router.get("/", function (req, res, next) {
 ////// USER //////
 // route create user
 router.post("/", async function (req, res, next) {
-  console.log("req.body /users");
-  console.log(req.body);
+// console.log("req.body /users");
+// console.log(req.body);
   if (!req.body.email || !req.body.password) {
     res.json({ result: false, message: "info missing" });
   } else {
@@ -36,7 +36,7 @@ router.post("/", async function (req, res, next) {
       email: req.body.email,
     });
     if (!user) {
-      console.log(req.body);
+// console.log(req.body);
       let token = uid2(32);
       let newUser = new UserModel({
         email: req.body.email.toLowerCase(),
@@ -77,13 +77,13 @@ router.post("/connect", async function (req, res, next) {
 
 // route connexion user
 router.post("/avatar", async function (req, res, next) {
-  console.log(req.files);
+// console.log(req.files);
   var imagePath = "./tmp/" + uniqid() + ".jpg";
   var resultCopy = await req.files.avatar.mv(imagePath);
 
   if (!resultCopy) {
     var resultCloudinary = await cloudinary.uploader.upload(imagePath);
-    console.log(resultCloudinary);
+// console.log(resultCloudinary);
     if (resultCloudinary.url) {
       fs.unlinkSync(imagePath);
       res.json({
@@ -116,7 +116,7 @@ router.put("/updateuserdata", async function (req, res, next) {
 
   if (updateUser) {
     var userData = await UserModel.findOne({ token: token });
-    console.log(userData);
+// console.log(userData);
     res.json({ result: true, userData });
   } else {
     res.json({ result: false });
@@ -126,7 +126,7 @@ router.put("/updateuserdata", async function (req, res, next) {
 //Route pour récuperer les infos du user à l'ouverture de l'app avec le localstorage.
 router.post("/getUserData", async function (req, res, next) {
   var token = req.body.token;
-  console.log("token", token);
+// console.log("token", token);
 
   var user = await userModel.findOne({ token: token });
   if (user) {

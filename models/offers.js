@@ -2,11 +2,11 @@ var mongoose = require("mongoose");
 
 var questionSchema = mongoose.Schema({
   questions: String,
-  placeholder: String,
+  placeholder: String
 });
 
 var commitmentSchema = mongoose.Schema({
-  commitment: String,
+  commitment: String
 });
 
 var offerSchema = mongoose.Schema({
@@ -17,7 +17,7 @@ var offerSchema = mongoose.Schema({
   commitments: [commitmentSchema],
   categoriyId: { type: mongoose.Schema.Types.ObjectId, ref: "categories" },
   subCategoriyId: { type: mongoose.Schema.Types.ObjectId, ref: "categories" },
-  questions: [questionSchema],
+  questions: [questionSchema]
 });
 
 var OfferModel = mongoose.model("offers", offerSchema);

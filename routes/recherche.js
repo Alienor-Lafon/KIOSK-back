@@ -135,7 +135,7 @@ router.get("/getPacks", async function (req, res, next) {
   if (dataPack) {
     res.json({ result: true, dataPack });
   } else {
-    res.json({ result: true });
+    res.json({ result: false });
   }
 });
 
@@ -148,7 +148,7 @@ router.get("/getPacks/:packId", async function (req, res, next) {
   if (packOffers) {
     res.json({ result: true, packOffers });
   } else {
-    res.json({ result: true });
+    res.json({ result: false });
   }
 });
 

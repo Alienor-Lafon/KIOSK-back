@@ -6,7 +6,7 @@ var officeSchema = mongoose.Schema({
   postalCode: String,
   country: String,
   officeName: String,
-  phone: String,
+  phone: String
 });
 
 var companySchema = mongoose.Schema({
@@ -20,8 +20,9 @@ var companySchema = mongoose.Schema({
   companyImage: String,
   labels: [{ type: mongoose.Schema.Types.ObjectId, ref: "labels" }],
   offers: [{ type: mongoose.Schema.Types.ObjectId, ref: "offers" }],
-  offices: [officeSchema],
+  offices: [officeSchema]
 });
+
 var companyModel = mongoose.model("companies", companySchema);
 
 module.exports = companyModel;

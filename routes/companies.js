@@ -89,11 +89,11 @@ router.put("/update-company", async function (req, res, next) {
     }
 
     );
-    console.log("update",updateCompany)
+// console.log("update",updateCompany)
 
     if (updateCompany) {
       var companyData = await CompanyModel.findOne({ id: req.body.companyId });
-      console.log(companyData);
+// console.log(companyData);
       res.json({ result: true, companyData });
     } else {
       res.json({ result: false });
@@ -217,13 +217,6 @@ router.put("/:companyId", async function (req, res, next) {
 // console.log("dataCie", dataCie);
     res.json({ result: true, dataCieFull, offerSaved });
   }
-});
-
-// route affichage labels sur page company blank
-router.get("/labels", async function (req, res, next) {
-  var dataLabels = await labelModel.find();
-// console.log("dataLabels", dataLabels);
-  res.json({ result: true, dataLabels });
 });
 
 // route suppression labels sur page company filled
