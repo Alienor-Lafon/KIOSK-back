@@ -19,11 +19,6 @@ cloudinary.config({
   api_secret: "_9NiMZQkKdOIXM-GQqpAzrYu6TE",
 });
 
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
 ////// USER //////
 // route create user
 router.post("/", async function (req, res, next) {

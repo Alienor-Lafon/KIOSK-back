@@ -74,7 +74,7 @@ router.put("/:offerId/", async function (req, res, next) {
 });
 
 // route delete offres
-router.delete("/:offerID", function (req, res, next) {
+router.delete("/:offerId", function (req, res, next) {
   let token = req.query.token;
 
   if (!token) {
