@@ -103,7 +103,7 @@ router.post("/rechercheListOffer", async function (req, res, next) {
 router.post("/recherche", async function (req, res, next) {
   var listOfferId = req.body.listOfferId;
   listOfferId = JSON.parse(listOfferId);
-  console.log("listOfferId", listOfferId);
+// console.log("listOfferId", listOfferId);
 
   //recherche des offre a partir d'une liste de d'ID
   offerList = await OfferModel.find({
@@ -130,6 +130,7 @@ router.post("/recherche", async function (req, res, next) {
   }
 });
 
+// récupération des Packs existants :
 router.get("/getPacks", async function (req, res, next) {
   var dataPack = await packModel.find();
   if (dataPack) {
@@ -139,9 +140,9 @@ router.get("/getPacks", async function (req, res, next) {
   }
 });
 
+// ércupération des offres du pack sélectionné :
 router.get("/getPacks/:packId", async function (req, res, next) {
-  var packOffers = await packModel
-    .findById(req.params.packId)
+  var packOffers = await packModel.findById(req.params.packId)
     .populate("offers")
     .exec();
   // console.log("packOffers", packOffers);

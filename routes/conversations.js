@@ -58,7 +58,7 @@ router.get("/:companyId/:userType/:token", async function (req, res, next) {
   var conversations;
   if (req.params.userType == "client") {
     conversations = await conversationModel.find({ senderID: companyId });
-  } else {
+  } else { // req.params.userType == "client"
     conversations = await conversationModel.find({ receiverID: companyId });
   }
 
@@ -69,7 +69,7 @@ router.get("/:companyId/:userType/:token", async function (req, res, next) {
     var company;
     if (req.params.userType == "client") {
       company = await CompanyModel.findById(conversations[i].receiverID);
-    } else {
+    } else { // req.params.userType == "client"
       company = await CompanyModel.findById(conversations[i].senderID);
     }
     conversationsToDisplay.push({

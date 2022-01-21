@@ -1,26 +1,32 @@
 var express = require("express");
 var router = express.Router();
 
+// utilisation du model
 var ratingModel = require('../models/ratings');
 
 
-// route get infos companie pour affichage company card :
-router.get('/:companyId/:token', async function (req, res, next) { // /route/params?query
+// route récupération infos company pour affichage company card :
+router.get('/:companyId/:token', async function (req, res, next) {
     let token = req.params.token;
     if (!token) {
         res.json({ result: false });
     } else {
-        var ratings = await ratingModel.find().populate("userId").populate("clientId").exec();
+        // réacupération des évaluations de la company évaluée + infos du user qui a noté + de son entreprise :
+        var ratings = await ratingModel.find()
+            .populate("userId")
+            .populate("clientId")
+            .exec();
 // console.log("ratings", ratings);
+        // calcul de la note moyenne du prestataire :
         var avg = await ratingModel.aggregate([{$group: {
             _id : "$providerId",
-            averageNoteByCie: { $avg: "$rating" } // age moyen par ville
+            averageNoteByCie: { $avg: "$rating" }
         }}]);
     res.json({ result: true, ratings, avg });
     }
 });
 
-// route pour créer un nouveau rating :
+// route création un nouveau rating :
 router.post("/:token", async function (req, res, next) {
     let token = req.params.token;
     if (!token) {

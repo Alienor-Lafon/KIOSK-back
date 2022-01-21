@@ -1,13 +1,16 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose');  // utilisation de Mongoose
+import { REACT_APP_APIMONGO } from '@env'; // imort de la clé API Mongo depuis le dotenv
 
 var options = {
     connectTimeoutMS: 5000,
     useNewUrlParser: true,
     useUnifiedTopology : true
 }
-mongoose.connect('mongodb+srv://admin:wB4o8utyvAH0uEog@cluster0.by4vv.mongodb.net/kiosk?retryWrites=true&w=majority', 
-    options,         
+
+// connexion à la DB Mongo de KIOSK
+mongoose.connect(`mongodb+srv://${REACT_APP_APIMONGO}`, 
+    options,
     function(err) {
-       console.log(err);
+        console.log(err);
     }
 );
